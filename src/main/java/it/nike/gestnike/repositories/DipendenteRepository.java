@@ -1,6 +1,6 @@
-package it.nike.gestnike.repository;
+package it.nike.gestnike.repositories;
 
-import it.nike.gestnike.models.Dipendente;
+import it.nike.gestnike.models.data_access.Dipendente;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

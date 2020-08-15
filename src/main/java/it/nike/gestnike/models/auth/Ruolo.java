@@ -1,4 +1,4 @@
-package it.nike.gestnike.models;
+package it.nike.gestnike.models.auth;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 

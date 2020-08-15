@@ -1,7 +1,7 @@
-package it.nike.gestnike.controller;
+package it.nike.gestnike.controller.gestione_dipendente;
 
 
-import it.nike.gestnike.models.Dipendente;
+import it.nike.gestnike.models.data_access.Dipendente;
 import it.nike.gestnike.services.gestione_dipendente.GestioneDipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

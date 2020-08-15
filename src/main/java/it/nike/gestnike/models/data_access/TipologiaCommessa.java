@@ -1,4 +1,4 @@
-package it.nike.gestnike.models;
+package it.nike.gestnike.models.data_access;
 
 public enum TipologiaCommessa {
 

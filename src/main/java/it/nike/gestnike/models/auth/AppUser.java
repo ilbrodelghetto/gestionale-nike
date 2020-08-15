@@ -1,11 +1,8 @@
-package it.nike.gestnike.models;
+package it.nike.gestnike.models.auth;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package it.nike.gestnike.models;
+package it.nike.gestnike.models.data_access;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;

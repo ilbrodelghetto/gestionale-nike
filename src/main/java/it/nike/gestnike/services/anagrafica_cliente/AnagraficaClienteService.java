@@ -1,7 +1,7 @@
-package it.nike.gestnike.services.gestione_dipendente;
+package it.nike.gestnike.services.anagrafica_cliente;
 
-import it.nike.gestnike.models.Cliente;
-import it.nike.gestnike.repository.ClienteRepository;
+import it.nike.gestnike.models.data_access.Cliente;
+import it.nike.gestnike.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
