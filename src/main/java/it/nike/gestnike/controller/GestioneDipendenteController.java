@@ -22,7 +22,7 @@ public class GestioneDipendenteController {
      * @throws Exception
      */
     @PostMapping("/addDipendente")
-    public Dipendente addDipente(@RequestBody Dipendente dipendente) throws Exception {
+    public Dipendente addDipendente(@RequestBody Dipendente dipendente) throws Exception {
         return gestioneDipendenteService.addDipendente(dipendente);
     }
 
@@ -44,7 +44,7 @@ public class GestioneDipendenteController {
      * @throws Exception
      */
     @GetMapping("/getDipendenti")
-    public List<Dipendente> getAllDipente() throws Exception {
+    public List<Dipendente> getAllDipendente() throws Exception {
         return gestioneDipendenteService.getAllDipendenti();
     }
 }
