@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.List;
 
 @Document(collection = "commessa")
 @Data
@@ -21,4 +22,7 @@ public class Commessa {
 
     private Date data_fine_commessa;
 
+    private List<Dipendente> dipendenti;
+
+    private Azienda azienda;
 }

@@ -15,5 +15,6 @@ public class Dipendente {
     private String id;
 
     private String cf;
+
     private AnagraficaDipendente anagraficaDipendente;
 }
