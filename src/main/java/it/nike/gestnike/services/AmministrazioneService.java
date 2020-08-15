@@ -1,6 +1,6 @@
 package it.nike.gestnike.services;
 
-import it.nike.models.amministrazione.AppUser;
+import it.nike.gestnike.models.AppUser;
 
 public interface AmministrazioneService {
 

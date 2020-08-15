@@ -1,17 +1,7 @@
-package it.nike.models.azienda;
+package it.nike.gestnike.models;
 
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
-import it.nike.models.cliente.Cliente;
-import it.nike.models.commessa.Commessa;
-import it.nike.models.dipendente.Dipendente;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 

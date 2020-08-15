@@ -1,7 +1,5 @@
-package it.nike.models.dipendente;
+package it.nike.gestnike.models;
 
-import it.nike.models.azienda.Azienda;
-import it.nike.models.contratto.Contratto;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,9 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.List;
 
-@Document(collection = "dipendente")
+@Document(collection = "anagrafica-dipendente")
 @Data
-public class Dipendente {
+public class AnagraficaDipendente {
 
     @Id
     private String id;
@@ -19,8 +17,6 @@ public class Dipendente {
     private String nome;
 
     private String cognome;
-
-    private String cf;
 
     private String email;
 

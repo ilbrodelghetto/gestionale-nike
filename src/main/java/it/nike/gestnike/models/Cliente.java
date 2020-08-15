@@ -1,4 +1,4 @@
-package it.nike.models.cliente;
+package it.nike.gestnike.models;
 
 
 import lombok.Data;

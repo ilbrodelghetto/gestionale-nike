@@ -3,7 +3,7 @@ package it.nike.gestnike.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.nike.models.amministrazione.AppUser;
+import it.nike.gestnike.models.AppUser;
 import it.nike.gestnike.repository.AmministrazioneRepository;
 
 @Service

@@ -2,7 +2,7 @@ package it.nike.gestnike.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import it.nike.models.amministrazione.AppUser;
+import it.nike.gestnike.models.AppUser;
 
 public interface AmministrazioneRepository extends MongoRepository <AppUser,String> {
 

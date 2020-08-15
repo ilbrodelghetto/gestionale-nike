@@ -1,6 +1,5 @@
-package it.nike.models.contratto;
+package it.nike.gestnike.models;
 
-import it.nike.models.azienda.Azienda;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
