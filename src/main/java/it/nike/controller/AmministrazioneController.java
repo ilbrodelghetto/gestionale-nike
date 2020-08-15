@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import it.nike.models.amministrazione.Amministrazione;
+import it.nike.models.amministrazione.AppUser;
 import it.nike.services.AmministrazioneService;
 
 @RestController
@@ -21,17 +21,17 @@ public class AmministrazioneController {
 	private AmministrazioneService amministrazioneService;
 	
 	@PostMapping(path="/salvaAmministratore")
-	public Amministrazione salvaAmministratore (@RequestBody Amministrazione amministrazione) {
+	public AppUser salvaAmministratore (@RequestBody AppUser amministrazione) {
 		return amministrazioneService.salvaAmministratore(amministrazione);
 	}
 	
 	@PutMapping(path="/aggiornaAmmnistratore/{email}")
-	public Amministrazione aggiornaAmministratore (@RequestBody Amministrazione amministratore, @PathVariable String email) {
+	public AppUser aggiornaAmministratore (@RequestBody AppUser amministratore, @PathVariable String email) {
 		return amministrazioneService.aggiornaAmministratore(amministratore, email);
 	}
 	
 	@DeleteMapping(path="/cancellaAmministratore")
-	public void cancellaAmministratore (@RequestBody Amministrazione amministrazione) {
+	public void cancellaAmministratore (@RequestBody AppUser amministrazione) {
 		
 		this.amministrazioneService.cancellaAmmnistratore(amministrazione);
 		

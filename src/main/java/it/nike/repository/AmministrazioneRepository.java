@@ -2,11 +2,11 @@ package it.nike.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import it.nike.models.amministrazione.Amministrazione;
+import it.nike.models.amministrazione.AppUser;
 
-public interface AmministrazioneRepository extends MongoRepository <Amministrazione,String> {
+public interface AmministrazioneRepository extends MongoRepository <AppUser,String> {
 
-	public Amministrazione findByEmail(String email);
-	public Amministrazione findByEmailAndPassword(String email, String password);
+	public AppUser findByEmail(String email);
+	public AppUser findByEmailAndPassword(String email, String password);
 	
 }

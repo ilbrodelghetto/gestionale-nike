@@ -12,31 +12,25 @@ import javax.persistence.OneToMany;
 import it.nike.models.cliente.Cliente;
 import it.nike.models.commessa.Commessa;
 import it.nike.models.dipendente.Dipendente;
+import lombok.Data;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+@Document(collection = "azienda")
+@Data
 public class Azienda {
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int id;
-	
-	@Column(unique = true)
+	private String id;
+
+	private boolean timeMaterial;
+
 	private String nomeAzienda;
 	
 	private double tariffaGiornaliera;
+
 	private double costoLordo;
+
 	private double margine;
+
 	private double markup;
-	
-	@OneToMany
-	private List<Dipendente> dipendente;
-	
-	@OneToMany
-	private List<Cliente> cliente;
-	
-	@OneToMany
-	private List<Commessa> commessa;
-	
-	
-	
 }
