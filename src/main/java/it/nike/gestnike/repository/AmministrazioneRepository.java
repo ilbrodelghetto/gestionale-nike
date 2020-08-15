@@ -1,4 +1,4 @@
-package it.nike.repository;
+package it.nike.gestnike.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

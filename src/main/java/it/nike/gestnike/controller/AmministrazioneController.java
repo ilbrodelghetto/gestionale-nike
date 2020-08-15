@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import it.nike.models.amministrazione.AppUser;
-import it.nike.services.AmministrazioneService;
+import it.nike.gestnike.services.AmministrazioneService;
 
 @RestController
 @RequestMapping(path="/api/v1")

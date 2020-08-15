@@ -1,4 +1,4 @@
-package it.nike.services;
+package it.nike.gestnike.services;
 
 import it.nike.models.amministrazione.AppUser;
 

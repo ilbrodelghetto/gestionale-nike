@@ -1,10 +1,10 @@
-package it.nike.services;
+package it.nike.gestnike.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.nike.models.amministrazione.AppUser;
-import it.nike.repository.AmministrazioneRepository;
+import it.nike.gestnike.repository.AmministrazioneRepository;
 
 @Service
 public class AmministrazioneServiceImpl implements AmministrazioneService {
