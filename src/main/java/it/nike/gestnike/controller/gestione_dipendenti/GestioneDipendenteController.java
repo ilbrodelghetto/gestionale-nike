@@ -71,6 +71,11 @@ public class GestioneDipendenteController {
         return gestioneDipendenteService.getDipendentiFiltered(dip);
     }
 
+    /**
+     *
+     * @param cf
+     * @throws Exception
+     */
     @GetMapping("/deleteDipendente/{cf}")
     public void deleteDipendente(@PathVariable String cf) throws Exception {
         gestioneDipendenteService.deleteDipendente(cf);
