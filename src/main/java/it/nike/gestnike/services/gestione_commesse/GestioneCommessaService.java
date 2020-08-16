@@ -106,4 +106,21 @@ public class GestioneCommessaService {
             throw new Exception("commessa non trovata");
         }
     }
+
+    /**
+     *
+     * @param codiceCommessa
+     * @throws Exception
+     */
+    public void deleteCommessa(String codiceCommessa) throws Exception {
+        try {
+            Optional<Commessa> commessaToDelete = commessaRepository.findById(codiceCommessa);
+            if(commessaToDelete.isPresent()) {
+                commessaRepository.delete(commessaToDelete.get());
+            }
+        }
+        catch (Exception e) {
+            throw new Exception("ops.. qualcosa è andato storto durante la cancellazione della commessa");
+        }
+    }
 }

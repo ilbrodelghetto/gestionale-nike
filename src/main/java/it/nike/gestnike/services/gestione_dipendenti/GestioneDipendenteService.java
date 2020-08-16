@@ -6,7 +6,9 @@ import it.nike.gestnike.repositories.DipendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GestioneDipendenteService {
@@ -73,6 +75,38 @@ public class GestioneDipendenteService {
         }
         else {
             return dip;
+        }
+    }
+
+    /**
+     *
+     * @param filter
+     * @return
+     */
+    public List<Dipendente> getDipendentiFiltered(Dipendente filter) {
+
+        List<Dipendente> dipendenti = dipendenteRepository.findAll();
+        //List<Dipendente> dipendentiFiltrati = new ArrayList<>();
+        List<Dipendente> dipendentiFiltrati = dipendenti.stream()
+                .filter(e -> e.equals(filter))
+                .collect(Collectors.toList());
+        return dipendentiFiltrati;
+    }
+
+    /**
+     *
+     * @param cfDipendente
+     * @throws Exception
+     */
+    public void deleteDipendente(String cfDipendente) throws Exception {
+        try {
+            Dipendente dipendeteToDelete = dipendenteRepository.findByCf(cfDipendente);
+            if (dipendeteToDelete != null) {
+                dipendenteRepository.delete(dipendeteToDelete);
+            }
+        }
+        catch (Exception e) {
+            throw new Exception("ops ... qualcosa è andato storto durante la cancellazione del dipendente");
         }
     }
 }

@@ -69,4 +69,14 @@ public class GestioneCommessaController {
     public Commessa getCommessa(@PathVariable String codiceFiscale) throws Exception {
         return gestioneCommessaService.getCommessa(codiceFiscale);
     }
+
+    /**
+     *
+     * @param codiceCommessa
+     * @throws Exception
+     */
+    @GetMapping("/deleteCommessa/{codiceFiscale}")
+    public void deleteCommessa(@PathVariable String codiceCommessa) throws Exception {
+        gestioneCommessaService.deleteCommessa(codiceCommessa);
+    }
 }
