@@ -30,7 +30,7 @@ public class GestioneTipologiaContrattoService {
      * Recupero di tutte le tipologie contratto
      * @return
      */
-    public List<TipologiaContratto> getAlltipologiaContratto(){
+    public List<TipologiaContratto> getAllTipologiaContratto(){
 
         return tipologiaContrattoRepository.findAll();
     }

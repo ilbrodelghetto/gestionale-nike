@@ -23,13 +23,13 @@ public class GestioneTipologiaController {
     @GetMapping("/getAllTipologiaContratto")
     public List<TipologiaContratto> getAllTipologiaContratto(){
 
-        return gestioneTipologiaContrattoService.getAlltipologiaContratto();
+        return gestioneTipologiaContrattoService.getAllTipologiaContratto();
     }
 
-    @PostMapping("/updateTipologiaContratto")
-    public TipologiaContratto updateTipologiaContratto(@RequestBody TipologiaContratto tipologiaContratto, String tipologiaDaAggiornare){
+    @PostMapping("/updateTipologiaContratto/{idTipologia}")
+    public TipologiaContratto updateTipologiaContratto(@RequestBody TipologiaContratto tipologiaContratto, @PathVariable String idTipologia){
 
-        return gestioneTipologiaContrattoService.updateTipologiaContratto(tipologiaContratto,tipologiaDaAggiornare);
+        return gestioneTipologiaContrattoService.updateTipologiaContratto(tipologiaContratto,idTipologia);
     }
 
 }
