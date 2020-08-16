@@ -31,4 +31,6 @@ public class AnagraficaDipendente {
     private Date dataNascita;
 
     private List<Contratto> contratto;
+
+    private Commessa commessa;
 }

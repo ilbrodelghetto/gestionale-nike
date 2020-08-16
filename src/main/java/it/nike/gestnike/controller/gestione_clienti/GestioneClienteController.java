@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/nike/cliente")
-public class AnagraficaClienteController {
+public class GestioneClienteController {
 
     @Autowired
     private GestioneClienteService anagraficaClienteService;
