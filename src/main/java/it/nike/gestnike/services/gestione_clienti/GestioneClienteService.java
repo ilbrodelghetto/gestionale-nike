@@ -1,4 +1,4 @@
-package it.nike.gestnike.services.anagrafica_cliente;
+package it.nike.gestnike.services.gestione_clienti;
 
 import it.nike.gestnike.models.data_access.Cliente;
 import it.nike.gestnike.repositories.ClienteRepository;
@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AnagraficaClienteService {
+public class GestioneClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
 
     public List<Cliente> getAllClienti(){
+
         return clienteRepository.findAll();
     }
 
@@ -43,9 +44,9 @@ public class AnagraficaClienteService {
     public Cliente updateCliente(Cliente cliente, String ragSocialeDaAggiornare){
 
         Cliente clienteOld = clienteRepository.findByRagSociale(ragSocialeDaAggiornare);
-
-        clienteOld.setRagSociale(cliente.getRagSociale());
-
-        return clienteRepository.save(clienteOld);
+        cliente.setId(clienteOld.getId());
+        return clienteRepository.save(cliente);
     }
+
+
 }

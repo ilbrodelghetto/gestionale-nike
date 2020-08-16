@@ -1,7 +1,7 @@
-package it.nike.gestnike.controller.anagrafica_cliente;
+package it.nike.gestnike.controller.gestione_clienti;
 
 import it.nike.gestnike.models.data_access.Cliente;
-import it.nike.gestnike.services.anagrafica_cliente.AnagraficaClienteService;
+import it.nike.gestnike.services.gestione_clienti.GestioneClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class AnagraficaClienteController {
 
     @Autowired
-    private AnagraficaClienteService anagraficaClienteService;
+    private GestioneClienteService anagraficaClienteService;
 
     /**
      *

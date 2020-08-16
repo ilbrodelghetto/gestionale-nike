@@ -1,4 +1,4 @@
-package it.nike.gestnike.services.gestione_dipendente;
+package it.nike.gestnike.services.gestione_dipendenti;
 
 
 import it.nike.gestnike.models.data_access.Dipendente;
@@ -57,6 +57,22 @@ public class GestioneDipendenteService {
         dipendenteOld.setAnagraficaDipendente(dipendente.getAnagraficaDipendente());
 
         return dipendenteRepository.save(dipendenteOld);
+    }
 
+    /**
+     * Recupero di un dipendente tramite codice fiscale
+     * @param codiceFiscale
+     * @return
+     * @throws Exception
+     */
+    public Dipendente getDipendete(String codiceFiscale) throws Exception {
+
+        Dipendente dip = dipendenteRepository.findByCf(codiceFiscale);
+        if(dip == null) {
+            throw new Exception("dipendente non trovato");
+        }
+        else {
+            return dip;
+        }
     }
 }

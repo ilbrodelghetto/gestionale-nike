@@ -1,8 +1,8 @@
-package it.nike.gestnike.controller.gestione_dipendente;
+package it.nike.gestnike.controller.gestione_dipendenti;
 
 
 import it.nike.gestnike.models.data_access.Dipendente;
-import it.nike.gestnike.services.gestione_dipendente.GestioneDipendenteService;
+import it.nike.gestnike.services.gestione_dipendenti.GestioneDipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +23,7 @@ public class GestioneDipendenteController {
      */
     @PostMapping("/addDipendente")
     public Dipendente addDipendente(@RequestBody Dipendente dipendente) throws Exception {
+
         return gestioneDipendenteService.addDipendente(dipendente);
     }
 
@@ -47,4 +48,16 @@ public class GestioneDipendenteController {
     public List<Dipendente> getAllDipendente() throws Exception {
         return gestioneDipendenteService.getAllDipendenti();
     }
+
+    /**
+     *
+     * @param cf
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/getDipendente/{cf}")
+    public Dipendente getDipendente(@PathVariable String cf) throws Exception {
+        return gestioneDipendenteService.getDipendete(cf);
+    }
 }
+
