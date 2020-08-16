@@ -48,5 +48,24 @@ public class GestioneClienteService {
         return clienteRepository.save(cliente);
     }
 
+    /**
+     * 
+     * @param ragSociale
+     * @throws Exception
+     */
+    public void deleteCliente(String ragSociale) throws Exception {
+
+        try{
+            Cliente clienteToDelete = clienteRepository.findByRagSociale(ragSociale);
+            if(clienteToDelete != null){
+                clienteRepository.delete(clienteToDelete);
+            }
+        }
+        catch (Exception e) {
+            throw new Exception("Il cliente non è stato rimosso");
+        }
+
+    }
+
 
 }

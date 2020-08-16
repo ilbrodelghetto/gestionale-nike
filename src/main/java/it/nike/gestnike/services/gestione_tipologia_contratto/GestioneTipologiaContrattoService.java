@@ -47,4 +47,24 @@ public class GestioneTipologiaContrattoService {
         tipologiaOld.get().setNomeTipologia(tipologiaContrattoNew.getNomeTipologia());
         return tipologiaContrattoRepository.save(tipologiaOld.get());
     }
+
+    /**
+     *
+     * @param idTipologia
+     * @throws Exception
+     */
+    public void deleteTipologia(String idTipologia)throws Exception {
+
+
+        try {
+            Optional<TipologiaContratto> tipogiaDaEliminare = tipologiaContrattoRepository.findById(idTipologia);
+            if(idTipologia != null) {
+                tipologiaContrattoRepository.delete(tipogiaDaEliminare.get());
+            }
+        }
+        catch (Exception e){
+            throw new Exception ("La tipologia non è stata rimossa");
+        }
+
+    }
 }

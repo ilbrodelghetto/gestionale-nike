@@ -32,4 +32,10 @@ public class GestioneTipologiaController {
         return gestioneTipologiaContrattoService.updateTipologiaContratto(tipologiaContratto,idTipologia);
     }
 
+    @GetMapping("/deleteTipologiaContratto/{idTipologia}")
+    public void deleteTipologia(@PathVariable String idTipologia) throws Exception {
+
+        gestioneTipologiaContrattoService.deleteTipologia(idTipologia);
+    }
+
 }

@@ -47,4 +47,15 @@ public class GestioneClienteController {
 
         return anagraficaClienteService.getAllClienti();
     }
+
+    /**
+     *
+     * @param ragSociale
+     * @throws Exception
+     */
+    @GetMapping("/deleteCliente/{ragSociale}")
+    public void deleteCliente (@PathVariable String ragSociale) throws Exception {
+        anagraficaClienteService.deleteCliente(ragSociale);
+    }
+
 }
