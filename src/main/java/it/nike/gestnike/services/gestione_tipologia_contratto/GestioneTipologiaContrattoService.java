@@ -21,15 +21,9 @@ public class GestioneTipologiaContrattoService {
      * @return
      * @throws Exception
      */
-    public TipologiaContratto addContratto (TipologiaContratto tipContr) throws Exception {
+    public TipologiaContratto addContratto (TipologiaContratto tipContr){
 
-        Optional<TipologiaContratto> tipologiaContratto = tipologiaContrattoRepository.findById(tipContr.getId());
-        if(tipologiaContratto.isPresent()) {
-            return tipologiaContrattoRepository.save(tipologiaContratto.get());
-        }
-        else {
-            throw new Exception ("Tipologia contratto esistente");
-        }
+        return tipologiaContrattoRepository.save(tipContr);
     }
 
     /**
@@ -42,18 +36,15 @@ public class GestioneTipologiaContrattoService {
     }
 
     /**
-     *
-     * @param tipologiaContratto
-     * @param tipologiaDaAggiornare
+     * 
+     * @param tipologiaContrattoNew
+     * @param idTipologia
      * @return
      */
-    public TipologiaContratto updateTipologiaContratto(TipologiaContratto tipologiaContratto,String tipologiaDaAggiornare){
+    public TipologiaContratto updateTipologiaContratto(TipologiaContratto tipologiaContrattoNew, String idTipologia){
 
-        Optional<TipologiaContratto> tipologiaOld = tipologiaContrattoRepository.findById(tipologiaDaAggiornare);
-
-        tipologiaOld.get().setNomeTipologia(tipologiaContratto.getNomeTipologia());
-
+        Optional<TipologiaContratto> tipologiaOld = tipologiaContrattoRepository.findById(idTipologia);
+        tipologiaOld.get().setNomeTipologia(tipologiaContrattoNew.getNomeTipologia());
         return tipologiaContrattoRepository.save(tipologiaOld.get());
-
     }
 }
