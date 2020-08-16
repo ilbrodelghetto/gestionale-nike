@@ -55,10 +55,9 @@ public class GestioneTipologiaContrattoService {
      */
     public void deleteTipologia(String idTipologia)throws Exception {
 
-
         try {
             Optional<TipologiaContratto> tipogiaDaEliminare = tipologiaContrattoRepository.findById(idTipologia);
-            if(idTipologia != null) {
+            if(tipogiaDaEliminare.isPresent()) {
                 tipologiaContrattoRepository.delete(tipogiaDaEliminare.get());
             }
         }
