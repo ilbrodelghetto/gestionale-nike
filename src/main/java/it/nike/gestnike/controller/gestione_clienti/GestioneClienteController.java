@@ -42,7 +42,7 @@ public class GestioneClienteController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/getClienti")
+    @GetMapping("/getAllClienti")
     public List<Cliente> getAllClienti() throws Exception {
 
         return anagraficaClienteService.getAllClienti();

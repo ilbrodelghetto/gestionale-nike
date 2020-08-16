@@ -36,7 +36,7 @@ public class GestioneClienteService {
     }
 
     /**
-     * Aggiornamento anagrafica di un dipendente
+     * Aggiornamento anagrafica di un cliente
      * @param cliente
      * @param ragSocialeDaAggiornare
      * @return
