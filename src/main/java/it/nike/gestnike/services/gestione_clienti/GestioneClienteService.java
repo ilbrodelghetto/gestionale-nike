@@ -1,9 +1,12 @@
 package it.nike.gestnike.services.gestione_clienti;
 
 import it.nike.gestnike.models.data_access.Cliente;
+import it.nike.gestnike.models.data_access.Dipendente;
 import it.nike.gestnike.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,6 +15,28 @@ public class GestioneClienteService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    /**
+     * 
+     * @param ragSociale
+     * @return
+     * @throws Exception
+     */
+    public Cliente getCliente(String ragSociale) throws Exception {
+
+        Cliente cli = clienteRepository.findByRagSociale(ragSociale);
+        if(cli == null) {
+            throw new Exception("cliente non trovato");
+        }
+        else {
+            return cli;
+        }
+    }
+
+    public List<Cliente> getClienti(){
+
+        return clienteRepository.findAll();
+    }
 
     public List<Cliente> getAllClienti(){
 
