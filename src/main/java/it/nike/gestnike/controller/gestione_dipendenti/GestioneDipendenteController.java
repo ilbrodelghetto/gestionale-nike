@@ -1,6 +1,7 @@
 package it.nike.gestnike.controller.gestione_dipendenti;
 
 
+import it.nike.gestnike.models.data_access.Azienda;
 import it.nike.gestnike.models.data_access.Dipendente;
 import it.nike.gestnike.services.gestione_dipendenti.GestioneDipendenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,11 @@ public class GestioneDipendenteController {
     @GetMapping("/deleteDipendente/{cf}")
     public void deleteDipendente(@PathVariable String cf) throws Exception {
         gestioneDipendenteService.deleteDipendente(cf);
+    }
+
+    @GetMapping("/getAllAziende")
+    public List<Azienda> getAllAziende() {
+        return gestioneDipendenteService.getAllAzienda();
     }
 }
 

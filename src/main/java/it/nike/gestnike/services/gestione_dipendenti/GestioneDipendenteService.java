@@ -1,7 +1,9 @@
 package it.nike.gestnike.services.gestione_dipendenti;
 
 
+import it.nike.gestnike.models.data_access.Azienda;
 import it.nike.gestnike.models.data_access.Dipendente;
+import it.nike.gestnike.repositories.AziendaRepository;
 import it.nike.gestnike.repositories.DipendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,8 @@ public class GestioneDipendenteService {
     @Autowired
     private DipendenteRepository dipendenteRepository;
 
-
+    @Autowired
+    private AziendaRepository aziendaRepository;
 
     /**
      *
@@ -108,5 +111,9 @@ public class GestioneDipendenteService {
         catch (Exception e) {
             throw new Exception("ops ... qualcosa è andato storto durante la cancellazione del dipendente");
         }
+    }
+
+    public List<Azienda> getAllAzienda() {
+        return aziendaRepository.findAll();
     }
 }
