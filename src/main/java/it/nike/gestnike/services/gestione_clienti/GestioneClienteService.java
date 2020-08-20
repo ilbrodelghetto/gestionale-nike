@@ -17,7 +17,7 @@ public class GestioneClienteService {
     private ClienteRepository clienteRepository;
 
     /**
-     * 
+     *
      * @param ragSociale
      * @return
      * @throws Exception
