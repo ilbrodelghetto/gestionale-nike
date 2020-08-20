@@ -1,5 +1,6 @@
 package it.nike.gestnike.models.data_access;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,9 +29,12 @@ public class AnagraficaDipendente {
 
     private String luogoNascita;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dataNascita;
 
     private List<Contratto> contratto;
 
     private Commessa commessa;
+
+    private String aziendaDiProvenienza;
 }
