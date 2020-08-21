@@ -1,5 +1,7 @@
 package it.nike.gestnike.controller.gestione_tipologia_contratto;
 
+import it.nike.gestnike.models.data_access.Contratto;
+import it.nike.gestnike.models.data_access.Dipendente;
 import it.nike.gestnike.models.data_access.TipologiaContratto;
 import it.nike.gestnike.services.gestione_tipologia_contratto.GestioneTipologiaContrattoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,33 @@ public class GestioneTipologiaController {
     @Autowired
     private GestioneTipologiaContrattoService gestioneTipologiaContrattoService;
 
+    @GetMapping("/getContratto/{idContratto}")
+    public Contratto getContratto(@PathVariable String idContratto) throws Exception {
+        return gestioneTipologiaContrattoService.getContratto(idContratto);
+    }
+
     @PostMapping("/addTipologiaContratto")
     public TipologiaContratto addTipologiaContratto(@RequestBody TipologiaContratto tipologiaContratto) throws Exception {
 
-        return  gestioneTipologiaContrattoService.addContratto(tipologiaContratto);
+        return  gestioneTipologiaContrattoService.addTipologiaContratto(tipologiaContratto);
+    }
+
+    @PostMapping("/addContratto")
+    public Contratto addContratto(@RequestBody Contratto contr) throws Exception {
+
+        return  gestioneTipologiaContrattoService.addContratto(contr);
+    }
+
+    @GetMapping("/deleteContratto")
+    public void deleteContratto(@PathVariable String idContratto) throws Exception{
+
+        gestioneTipologiaContrattoService.deleteContratto(idContratto);
+    }
+
+    @GetMapping("/getAllContratto")
+    public List<Contratto> getAllContratto(){
+        
+        return gestioneTipologiaContrattoService.getAllContratto();
     }
 
     @GetMapping("/getAllTipologiaContratto")

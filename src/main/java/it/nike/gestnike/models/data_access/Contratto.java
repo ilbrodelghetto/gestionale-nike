@@ -29,4 +29,6 @@ public class Contratto {
 
     private Azienda azienda;
 
+    private TipologiaContratto tipologiaContratto;
+
 }

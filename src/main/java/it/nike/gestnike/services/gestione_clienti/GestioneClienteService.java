@@ -33,10 +33,6 @@ public class GestioneClienteService {
         }
     }
 
-    public List<Cliente> getClienti(){
-
-        return clienteRepository.findAll();
-    }
 
     public List<Cliente> getAllClienti(){
 
