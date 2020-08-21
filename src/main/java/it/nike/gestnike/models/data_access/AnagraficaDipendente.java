@@ -32,9 +32,6 @@ public class AnagraficaDipendente {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dataNascita;
 
-    private List<Contratto> contratto;
-
-    private Commessa commessa;
 
     private String aziendaDiProvenienza;
 }

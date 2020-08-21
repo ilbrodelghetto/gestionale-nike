@@ -22,7 +22,4 @@ public class Commessa {
 
     private Date data_fine_commessa;
 
-    private List<Dipendente> dipendenti;
-
-    private Azienda azienda;
 }

@@ -77,7 +77,7 @@ public class GestioneCommessaService {
 
             Optional<Commessa> commessa = commessaRepository.findById(codiceCommessa);
             if(commessa.isPresent()) {
-                dipendente.getAnagraficaDipendente().setCommessa(commessa.get());
+                dipendente.setCommessa(commessa.get());
             }
             else {
                 throw new Exception("commessa da associare non presente");

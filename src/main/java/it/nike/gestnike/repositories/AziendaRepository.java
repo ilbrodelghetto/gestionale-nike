@@ -5,4 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface AziendaRepository extends MongoRepository<Azienda, String> {
 
+    public Azienda findByNomeAzienda(String nomeAzienda);
 }

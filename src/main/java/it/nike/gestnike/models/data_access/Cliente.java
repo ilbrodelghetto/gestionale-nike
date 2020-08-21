@@ -5,6 +5,8 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "cliente")
 @Data
 public class Cliente {
@@ -23,6 +25,8 @@ public class Cliente {
     private String codiceInterscambio;
 
     private String pec;
+
+    private List<Commessa> commesse;
 
 
 }

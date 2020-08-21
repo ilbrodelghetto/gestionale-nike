@@ -5,6 +5,8 @@ import javax.persistence.Id;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "azienda")
 @Data
 public class Azienda {
@@ -23,4 +25,8 @@ public class Azienda {
 	private double margine;
 
 	private double markup;
+
+	private List<Cliente> clienti;
+
+	private List<Dipendente> dipendenti;
 }

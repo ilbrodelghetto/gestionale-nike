@@ -60,7 +60,15 @@ public class GestioneDipendenteService {
 
         /* settiamo l'anagrafica del dipendente aggiornato al dipende che deve essere aggiornato*/
         dipendenteOld.setAnagraficaDipendente(dipendente.getAnagraficaDipendente());
-
+        Azienda azienda = aziendaRepository.findByNomeAzienda(dipendente.getAzienda().getNomeAzienda());
+        if(azienda == null) {
+            dipendenteOld.setAzienda(aziendaRepository.save(dipendente.getAzienda()));
+            System.out.println(("azienda nuova"));
+        }
+        else {
+            dipendenteOld.setAzienda(azienda);
+            System.out.println(("azienda trovata"));
+        }
         return dipendenteRepository.save(dipendenteOld);
     }
 

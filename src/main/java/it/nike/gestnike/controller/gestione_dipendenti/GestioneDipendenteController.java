@@ -37,6 +37,7 @@ public class GestioneDipendenteController {
      */
     @PostMapping("/updateDipendente/{codiceFiscale}")
     public Dipendente updateDipente(@RequestBody Dipendente dipendente, @PathVariable String codiceFiscale) throws Exception {
+        System.out.println("AGGIORNAMENTO DIPENDENTE-----> " + dipendente);
         return gestioneDipendenteService.updateDipendente(dipendente, codiceFiscale);
     }
 
