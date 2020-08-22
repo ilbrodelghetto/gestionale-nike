@@ -2,16 +2,19 @@ package it.nike.gestnike.models.data_access;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Date;
 
-@Document(collection = "contratto")
+@Entity
 @Data
 public class Contratto {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private boolean inCorso;
 

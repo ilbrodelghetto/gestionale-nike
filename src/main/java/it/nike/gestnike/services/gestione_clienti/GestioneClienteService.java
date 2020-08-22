@@ -1,7 +1,9 @@
 package it.nike.gestnike.services.gestione_clienti;
 
+import it.nike.gestnike.models.data_access.Azienda;
 import it.nike.gestnike.models.data_access.Cliente;
 import it.nike.gestnike.models.data_access.Dipendente;
+import it.nike.gestnike.repositories.AziendaRepository;
 import it.nike.gestnike.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class GestioneClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    @Autowired
+    private AziendaRepository aziendaRepository;
     /**
      *
      * @param ragSociale
@@ -33,10 +37,13 @@ public class GestioneClienteService {
         }
     }
 
-
+    /**
+     *
+     * @return
+     */
     public List<Cliente> getAllClienti(){
 
-        return clienteRepository.findAll();
+        return (List<Cliente>) clienteRepository.findAll();
     }
 
     /**
@@ -49,11 +56,21 @@ public class GestioneClienteService {
 
         Cliente cliente = clienteRepository.findByRagSociale(cli.getRagSociale());
         if(cliente == null){
-            return clienteRepository.save(cli);
+            Azienda azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
+            if(azienda != null) {
+
+                cliente = clienteRepository.save(cli);
+                azienda.getClienti().add(cliente);
+                aziendaRepository.save(azienda);
+            }
+            else {
+                throw new Exception("azienda non trovata");
+            }
         }
         else{
             throw new Exception ("Cliente eistente");
         }
+        return null;
     }
 
     /**
@@ -62,11 +79,34 @@ public class GestioneClienteService {
      * @param ragSocialeDaAggiornare
      * @return
      */
-    public Cliente updateCliente(Cliente cliente, String ragSocialeDaAggiornare){
+    public Cliente updateCliente(Cliente cliente, String ragSocialeDaAggiornare) throws Exception {
 
         Cliente clienteOld = clienteRepository.findByRagSociale(ragSocialeDaAggiornare);
-        cliente.setId(clienteOld.getId());
-        return clienteRepository.save(cliente);
+        if(clienteOld != null) {
+            if(!clienteOld.getAzienda().getNomeAzienda().equals(cliente.getAzienda().getNomeAzienda())) {
+                Azienda azienda = aziendaRepository.findByNomeAzienda(clienteOld.getAzienda().getNomeAzienda());
+                azienda.getClienti().remove(clienteOld);
+                aziendaRepository.save(azienda);
+                azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
+                cliente.setId(clienteOld.getId());
+                cliente = clienteRepository.save(cliente);
+                azienda.getClienti().add(cliente);
+                aziendaRepository.save(azienda);
+                return cliente;
+            }
+            else {
+                cliente.setId(clienteOld.getId());
+                cliente =  clienteRepository.save(cliente);
+                Azienda azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
+                azienda.getClienti().remove(clienteOld);
+                azienda.getClienti().add(cliente);
+                aziendaRepository.save(azienda);
+                return cliente;
+            }
+        }
+        else {
+            throw new Exception("qualcosa è andato storto");
+        }
     }
 
     /**
@@ -79,6 +119,9 @@ public class GestioneClienteService {
         try{
             Cliente clienteToDelete = clienteRepository.findByRagSociale(ragSociale);
             if(clienteToDelete != null){
+                Azienda azienda = aziendaRepository.findByNomeAzienda(clienteToDelete.getAzienda().getNomeAzienda());
+                azienda.getClienti().remove(clienteToDelete);
+                aziendaRepository.save(azienda);
                 clienteRepository.delete(clienteToDelete);
             }
         }

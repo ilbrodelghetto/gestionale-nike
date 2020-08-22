@@ -3,17 +3,20 @@ package it.nike.gestnike.models.data_access;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Date;
-import java.util.List;
 
-@Document(collection = "anagrafica-dipendente")
+@Entity
 @Data
 public class AnagraficaDipendente {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private String nome;
 

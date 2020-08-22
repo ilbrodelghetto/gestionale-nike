@@ -1,20 +1,21 @@
 package it.nike.gestnike.models.auth;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Document(collection = "amministrazione")
+@Entity
 @Data
 public class AppUser {
 
 	@Id
-	private String id;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
 
 	private String username;
 
@@ -34,7 +35,7 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String id, String username, String email, String password, Set<Role> roles) {
+	public AppUser(Long id, String username, String email, String password, Set<Role> roles) {
 		this.id = id;
 		this.username = username;
 		this.email = email;

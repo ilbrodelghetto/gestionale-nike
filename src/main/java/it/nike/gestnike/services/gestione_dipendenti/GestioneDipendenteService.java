@@ -31,9 +31,19 @@ public class GestioneDipendenteService {
 
         Dipendente dipendente = dipendenteRepository.findByCf(dip.getCf());
         if(dipendente == null) {
-            return dipendenteRepository.save(dip);
+            Azienda azienda = aziendaRepository.findByNomeAzienda(dip.getAzienda().getNomeAzienda());
+
+            if(azienda != null) {
+                dip = dipendenteRepository.save(dip);
+                azienda.getDipendenti().add(dip);
+                return dip;
+            }
+            else {
+                throw  new Exception("azienda non trovata");
+            }
         }
         else {
+
             throw new Exception("dipendente già esistente");
         }
     }
@@ -44,7 +54,7 @@ public class GestioneDipendenteService {
      */
     public List<Dipendente> getAllDipendenti() {
 
-        return dipendenteRepository.findAll();
+        return (List<Dipendente>) dipendenteRepository.findAll();
     }
 
     /**
@@ -96,7 +106,7 @@ public class GestioneDipendenteService {
      */
     public List<Dipendente> getDipendentiFiltered(Dipendente filter) {
 
-        List<Dipendente> dipendenti = dipendenteRepository.findAll();
+        List<Dipendente> dipendenti = (List<Dipendente>) dipendenteRepository.findAll();
         //List<Dipendente> dipendentiFiltrati = new ArrayList<>();
         List<Dipendente> dipendentiFiltrati = dipendenti.stream()
                 .filter(e -> e.equals(filter))
@@ -113,7 +123,15 @@ public class GestioneDipendenteService {
         try {
             Dipendente dipendeteToDelete = dipendenteRepository.findByCf(cfDipendente);
             if (dipendeteToDelete != null) {
-                dipendenteRepository.delete(dipendeteToDelete);
+                Azienda azienda = aziendaRepository.findByNomeAzienda(dipendeteToDelete.getAzienda().getNomeAzienda());
+                if(azienda != null) {
+                    azienda.getDipendenti().remove(dipendeteToDelete);
+                    aziendaRepository.save(azienda);
+                    dipendenteRepository.delete(dipendeteToDelete);
+                }
+                else {
+                    throw new Exception("azienda non trovata");
+                }
             }
         }
         catch (Exception e) {
@@ -121,7 +139,12 @@ public class GestioneDipendenteService {
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Azienda> getAllAzienda() {
-        return aziendaRepository.findAll();
+
+        return (List<Azienda>) aziendaRepository.findAll();
     }
 }

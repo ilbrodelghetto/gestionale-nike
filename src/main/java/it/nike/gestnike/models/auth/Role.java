@@ -1,15 +1,18 @@
 package it.nike.gestnike.models.auth;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Document(collection = "roles")
+@Entity
 @Data
 public class Role {
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
 
     private ERole name;
 

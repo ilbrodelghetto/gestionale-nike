@@ -8,7 +8,7 @@ public class JwtResponse {
 
     private String jwt;
 
-    private String id;
+    private Long id;
 
     private String username;
 
@@ -16,7 +16,7 @@ public class JwtResponse {
 
     private List<String> roles;
 
-    public JwtResponse(String jwt, String id, String username, String email, List<String> roles) {
+    public JwtResponse(String jwt, Long id, String username, String email, List<String> roles) {
         this.jwt = jwt;
         this.id = id;
         this.username = username;

@@ -26,7 +26,7 @@ public class GestioneTipologiaContrattoService {
      * @return
      * @throws Exception
      */
-    public Contratto getContratto(String idContratto) throws Exception {
+    public Contratto getContratto(Long idContratto) throws Exception {
 
         Optional<Contratto> contr = contrattoRepository.findById(idContratto);
         if(!contr.isPresent()) {
@@ -43,7 +43,7 @@ public class GestioneTipologiaContrattoService {
      */
     public List<Contratto> getAllContratto () {
 
-        return contrattoRepository.findAll();
+        return (List<Contratto>) contrattoRepository.findAll();
     }
 
     /**
@@ -60,7 +60,7 @@ public class GestioneTipologiaContrattoService {
      * @param idContratto
      * @throws Exception
      */
-    public void deleteContratto(String idContratto) throws Exception {
+    public void deleteContratto(Long idContratto) throws Exception {
 
         try {
             Optional<Contratto> contrattoDaEliminare = contrattoRepository.findById(idContratto);
@@ -89,7 +89,7 @@ public class GestioneTipologiaContrattoService {
          */
         public List<TipologiaContratto> getAllTipologiaContratto () {
 
-            return tipologiaContrattoRepository.findAll();
+            return (List<TipologiaContratto>) tipologiaContrattoRepository.findAll();
         }
 
 
@@ -99,7 +99,7 @@ public class GestioneTipologiaContrattoService {
          * @param idTipologia
          * @return
          */
-        public TipologiaContratto updateTipologiaContratto (TipologiaContratto tipologiaContrattoNew, String idTipologia)
+        public TipologiaContratto updateTipologiaContratto (TipologiaContratto tipologiaContrattoNew, Long idTipologia)
         {
 
             Optional<TipologiaContratto> tipologiaOld = tipologiaContrattoRepository.findById(idTipologia);
@@ -112,7 +112,7 @@ public class GestioneTipologiaContrattoService {
          * @param idTipologia
          * @throws Exception
          */
-        public void deleteTipologia (String idTipologia)throws Exception {
+        public void deleteTipologia (Long idTipologia)throws Exception {
 
             try {
                 Optional<TipologiaContratto> tipogiaDaEliminare = tipologiaContrattoRepository.findById(idTipologia);

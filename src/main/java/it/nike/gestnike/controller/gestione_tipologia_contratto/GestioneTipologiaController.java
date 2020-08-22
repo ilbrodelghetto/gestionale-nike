@@ -17,7 +17,7 @@ public class GestioneTipologiaController {
     private GestioneTipologiaContrattoService gestioneTipologiaContrattoService;
 
     @GetMapping("/getContratto/{idContratto}")
-    public Contratto getContratto(@PathVariable String idContratto) throws Exception {
+    public Contratto getContratto(@PathVariable Long idContratto) throws Exception {
         return gestioneTipologiaContrattoService.getContratto(idContratto);
     }
 
@@ -34,7 +34,7 @@ public class GestioneTipologiaController {
     }
 
     @GetMapping("/deleteContratto")
-    public void deleteContratto(@PathVariable String idContratto) throws Exception{
+    public void deleteContratto(@PathVariable Long idContratto) throws Exception{
 
         gestioneTipologiaContrattoService.deleteContratto(idContratto);
     }
@@ -52,13 +52,13 @@ public class GestioneTipologiaController {
     }
 
     @PostMapping("/updateTipologiaContratto/{idTipologia}")
-    public TipologiaContratto updateTipologiaContratto(@RequestBody TipologiaContratto tipologiaContratto, @PathVariable String idTipologia){
+    public TipologiaContratto updateTipologiaContratto(@RequestBody TipologiaContratto tipologiaContratto, @PathVariable Long idTipologia){
 
         return gestioneTipologiaContrattoService.updateTipologiaContratto(tipologiaContratto,idTipologia);
     }
 
     @GetMapping("/deleteTipologiaContratto/{idTipologia}")
-    public void deleteTipologia(@PathVariable String idTipologia) throws Exception {
+    public void deleteTipologia(@PathVariable Long idTipologia) throws Exception {
 
         gestioneTipologiaContrattoService.deleteTipologia(idTipologia);
     }

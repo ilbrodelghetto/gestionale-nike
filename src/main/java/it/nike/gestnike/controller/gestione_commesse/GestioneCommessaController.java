@@ -22,8 +22,8 @@ public class GestioneCommessaController {
      * @throws Exception
      */
     @PostMapping("/addCommessa")
-    public Commessa addCommessa(@RequestBody Commessa commessa) throws Exception {
-        return gestioneCommessaService.addCommessa(commessa);
+    public Commessa addCommessa(@RequestBody Commessa commessa, @RequestBody String ragSociale) throws Exception {
+        return gestioneCommessaService.addCommessa(commessa, ragSociale);
     }
 
     /**
@@ -43,7 +43,7 @@ public class GestioneCommessaController {
      * @throws Exception
      */
     @PostMapping("/aggiornaCommessa/{codiceCommessa}")
-    public Commessa updateCommessa(@RequestBody Commessa commessa, @PathVariable String codiceCommessa) throws Exception {
+    public Commessa updateCommessa(@RequestBody Commessa commessa, @PathVariable Long codiceCommessa) throws Exception {
         return gestioneCommessaService.updateCommessa(commessa, codiceCommessa);
     }
 
@@ -55,7 +55,7 @@ public class GestioneCommessaController {
      * @throws Exception
      */
     @PostMapping("/associaCommessa/{codiceFiscale}/{codiceCommessa}")
-    public Dipendente associaRisorsa(@PathVariable String codiceFiscale, @PathVariable String codiceCommessa) throws Exception {
+    public Dipendente associaRisorsa(@PathVariable String codiceFiscale, @PathVariable Long codiceCommessa) throws Exception {
         return gestioneCommessaService.associaRisorsa(codiceFiscale, codiceCommessa);
     }
 
@@ -65,9 +65,9 @@ public class GestioneCommessaController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/getCommessa/{codiceFiscale}")
-    public Commessa getCommessa(@PathVariable String codiceFiscale) throws Exception {
-        return gestioneCommessaService.getCommessa(codiceFiscale);
+    @GetMapping("/getCommessa/{codiceCommessa}")
+    public Commessa getCommessa(@PathVariable Long codiceCommessa) throws Exception {
+        return gestioneCommessaService.getCommessa(codiceCommessa);
     }
 
     /**
@@ -75,8 +75,8 @@ public class GestioneCommessaController {
      * @param codiceCommessa
      * @throws Exception
      */
-    @GetMapping("/deleteCommessa/{codiceFiscale}")
-    public void deleteCommessa(@PathVariable String codiceCommessa) throws Exception {
+    @GetMapping("/deleteCommessa/{codiceCommessa}")
+    public void deleteCommessa(@PathVariable Long codiceCommessa) throws Exception {
         gestioneCommessaService.deleteCommessa(codiceCommessa);
     }
 }

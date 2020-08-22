@@ -1,18 +1,21 @@
 package it.nike.gestnike.models.data_access;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "azienda")
+@Entity
 @Data
 public class Azienda {
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
 
 	private boolean timeMaterial;
 

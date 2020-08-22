@@ -1,7 +1,9 @@
 package it.nike.gestnike.services.gestione_commesse;
 
+import it.nike.gestnike.models.data_access.Cliente;
 import it.nike.gestnike.models.data_access.Commessa;
 import it.nike.gestnike.models.data_access.Dipendente;
+import it.nike.gestnike.repositories.ClienteRepository;
 import it.nike.gestnike.repositories.CommessaRepository;
 import it.nike.gestnike.repositories.DipendenteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GestioneCommessaService {
@@ -19,15 +22,26 @@ public class GestioneCommessaService {
     @Autowired
     private DipendenteRepository dipendenteRepository;
 
+    @Autowired
+    private ClienteRepository clienteRepository;
+
     /**
      *
      * @param commessa
      * @return
      */
-    public Commessa addCommessa(Commessa commessa) throws Exception {
+    public Commessa addCommessa(Commessa commessa, String ragSociale) throws Exception {
 
         try {
-            return commessaRepository.save(commessa);
+            Cliente cliente = clienteRepository.findByRagSociale(ragSociale);
+            if(cliente != null) {
+                cliente.getCommesse().add(commessa);
+                clienteRepository.save(cliente);
+                return commessaRepository.save(commessa);
+            }
+            else {
+                throw new Exception("cliente inesistente a cui associare la commessa");
+            }
         }
         catch (Exception e) {
             throw new Exception("ops... qualcosa è andato storto");
@@ -40,7 +54,7 @@ public class GestioneCommessaService {
      */
     public List<Commessa> getAllCommesse() {
 
-        return commessaRepository.findAll();
+        return (List<Commessa>) commessaRepository.findAll();
     }
 
     /**
@@ -50,7 +64,7 @@ public class GestioneCommessaService {
      * @return
      * @throws Exception
      */
-    public Commessa updateCommessa(Commessa commessaNew, String codCommessaOld) throws Exception {
+    public Commessa updateCommessa(Commessa commessaNew, Long codCommessaOld) throws Exception {
 
         Optional<Commessa> commessaOld = commessaRepository.findById(codCommessaOld);
         if(commessaOld.isPresent()) {
@@ -70,7 +84,7 @@ public class GestioneCommessaService {
      * @return
      * @throws Exception
      */
-    public Dipendente associaRisorsa(String codiceFiscale, String codiceCommessa) throws Exception {
+    public Dipendente associaRisorsa(String codiceFiscale, Long codiceCommessa) throws Exception {
 
         Dipendente dipendente = dipendenteRepository.findByCf(codiceFiscale);
         if(dipendente != null) {
@@ -95,7 +109,7 @@ public class GestioneCommessaService {
      * @return
      * @throws Exception
      */
-    public Commessa getCommessa(String codiceCommessa) throws Exception {
+    public Commessa getCommessa(Long codiceCommessa) throws Exception {
 
         Optional<Commessa> commessa = commessaRepository.findById(codiceCommessa);
         if(commessa.isPresent()) {
@@ -112,11 +126,21 @@ public class GestioneCommessaService {
      * @param codiceCommessa
      * @throws Exception
      */
-    public void deleteCommessa(String codiceCommessa) throws Exception {
+    public void deleteCommessa(Long codiceCommessa) throws Exception {
         try {
             Optional<Commessa> commessaToDelete = commessaRepository.findById(codiceCommessa);
             if(commessaToDelete.isPresent()) {
+                Cliente clienteToUpdate = clienteRepository.findByRagSociale(commessaToDelete.get().getCliente().getRagSociale());
+
+                List<Commessa> commesseUpdated = clienteToUpdate.getCommesse().stream()
+                        .filter(x -> !(x.getCodiceCommessa().equals(commessaToDelete.get().getCodiceCommessa())))
+                        .collect(Collectors.toList());
+                clienteToUpdate.setCommesse(commesseUpdated);
+                clienteRepository.save(clienteToUpdate);
                 commessaRepository.delete(commessaToDelete.get());
+            }
+            else {
+                throw new Exception("qualcosa è andato storto durante la cancellazione della commessa");
             }
         }
         catch (Exception e) {

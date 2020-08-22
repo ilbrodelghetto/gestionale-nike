@@ -54,7 +54,7 @@ public class GestnikeApplication implements CommandLineRunner {
 		Optional<AppUser> userOpt = userRepository.findByUsername("nike");
 		if(!userOpt.isPresent()) {
 			AppUser user = new AppUser();
-			user.setId("2222222");
+			user.setId(1L);
 			user.setEmail("jelassi.hass@nikeconsulting.com");
 			user.setUsername("nike");
 			user.setPassword(encoder.encode("nike"));
