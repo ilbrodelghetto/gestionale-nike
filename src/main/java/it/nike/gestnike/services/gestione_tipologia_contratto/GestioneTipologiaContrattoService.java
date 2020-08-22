@@ -56,6 +56,19 @@ public class GestioneTipologiaContrattoService {
     }
 
     /**
+     * 
+     * @param contratto
+     * @param idContratto
+     * @return
+     */
+    public Contratto updateContratto(Contratto contratto, String idContratto){
+
+        Optional<TipologiaContratto> contrattoOld = tipologiaContrattoRepository.findById(idContratto);
+        contratto.setId(contrattoOld.get().getId());
+        return contrattoRepository.save(contratto);
+    }
+
+    /**
      *
      * @param idContratto
      * @throws Exception
@@ -71,6 +84,7 @@ public class GestioneTipologiaContrattoService {
             throw new Exception("La tipologia non è stata rimossa");
         }
     }
+
         /**
          *
          * @param tipContr

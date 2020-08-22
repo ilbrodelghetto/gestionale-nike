@@ -41,7 +41,7 @@ public class GestioneTipologiaController {
 
     @GetMapping("/getAllContratto")
     public List<Contratto> getAllContratto(){
-        
+
         return gestioneTipologiaContrattoService.getAllContratto();
     }
 
