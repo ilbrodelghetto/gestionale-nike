@@ -21,9 +21,9 @@ public class GestioneCommessaController {
      * @return
      * @throws Exception
      */
-    @PostMapping("/addCommessa")
-    public Commessa addCommessa(@RequestBody Commessa commessa) throws Exception {
-        return gestioneCommessaService.addCommessa(commessa);
+    @PostMapping("/addCommessa/{ragSociale}")
+    public Commessa addCommessa(@RequestBody Commessa commessa, @PathVariable String ragSociale) throws Exception {
+        return gestioneCommessaService.addCommessa(commessa, ragSociale);
     }
 
     /**
@@ -42,9 +42,9 @@ public class GestioneCommessaController {
      * @return
      * @throws Exception
      */
-    @PostMapping("/aggiornaCommessa/{codiceCommessa}")
-    public Commessa updateCommessa(@RequestBody Commessa commessa, @PathVariable String codiceCommessa) throws Exception {
-        return gestioneCommessaService.updateCommessa(commessa, codiceCommessa);
+    @PostMapping("/aggiornaCommessa/{ragSociale}/{codiceCommessa}")
+    public Commessa updateCommessa(@RequestBody Commessa commessa, @PathVariable String ragSociale, @PathVariable String codiceCommessa) throws Exception {
+        return gestioneCommessaService.updateCommessa(commessa, ragSociale, codiceCommessa);
     }
 
     /**
@@ -75,8 +75,8 @@ public class GestioneCommessaController {
      * @param codiceCommessa
      * @throws Exception
      */
-    @GetMapping("/deleteCommessa/{codiceFiscale}")
-    public void deleteCommessa(@PathVariable String codiceCommessa) throws Exception {
-        gestioneCommessaService.deleteCommessa(codiceCommessa);
+    @GetMapping("/deleteCommessa/{codiceFiscale}/{ragSociale}")
+    public void deleteCommessa(@PathVariable String codiceCommessa, @PathVariable String ragSociale) throws Exception {
+        gestioneCommessaService.deleteCommessa(codiceCommessa, ragSociale);
     }
 }

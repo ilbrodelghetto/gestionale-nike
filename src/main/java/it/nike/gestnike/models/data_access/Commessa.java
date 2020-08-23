@@ -22,4 +22,6 @@ public class Commessa {
 
     private Date data_fine_commessa;
 
+    private Cliente cliente;
+
 }

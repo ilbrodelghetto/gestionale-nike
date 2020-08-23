@@ -24,10 +24,10 @@ public class GestioneCommessaService {
      * @param commessa
      * @return
      */
-    public Commessa addCommessa(Commessa commessa) throws Exception {
+    public Commessa addCommessa(Commessa commessa, String ragSociale) throws Exception {
 
         try {
-            return commessaRepository.save(commessa);
+            return commessaRepository.save(commessa, ragSociale);
         }
         catch (Exception e) {
             throw new Exception("ops... qualcosa è andato storto");
@@ -50,13 +50,12 @@ public class GestioneCommessaService {
      * @return
      * @throws Exception
      */
-    public Commessa updateCommessa(Commessa commessaNew, String codCommessaOld) throws Exception {
+    public Commessa updateCommessa(Commessa commessaNew, String ragSociale, String codCommessaOld) throws Exception {
 
         Optional<Commessa> commessaOld = commessaRepository.findById(codCommessaOld);
         if(commessaOld.isPresent()) {
 
-            commessaNew.setCodiceCommessa(commessaOld.get().getCodiceCommessa());
-            return commessaRepository.save(commessaNew);
+            return commessaRepository.update(commessaNew, ragSociale, codCommessaOld);
         }
         else {
             throw new Exception("commessa da aggiornare non esistente");
@@ -112,7 +111,7 @@ public class GestioneCommessaService {
      * @param codiceCommessa
      * @throws Exception
      */
-    public void deleteCommessa(String codiceCommessa) throws Exception {
+    public void deleteCommessa(String codiceCommessa, String ragSociale) throws Exception {
         try {
             Optional<Commessa> commessaToDelete = commessaRepository.findById(codiceCommessa);
             if(commessaToDelete.isPresent()) {

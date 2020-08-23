@@ -27,6 +27,8 @@ public class Cliente {
     private String pec;
 
     private List<Commessa> commesse;
+    
+    private Azienda azienda;
 
 
 }
