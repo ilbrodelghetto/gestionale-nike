@@ -2,13 +2,13 @@ package it.nike.gestnike.models.data_access;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import java.util.Date;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -35,6 +35,4 @@ public class AnagraficaDipendente {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dataNascita;
 
-
-    private String aziendaDiProvenienza;
 }

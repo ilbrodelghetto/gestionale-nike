@@ -130,13 +130,6 @@ public class GestioneCommessaService {
         try {
             Optional<Commessa> commessaToDelete = commessaRepository.findById(codiceCommessa);
             if(commessaToDelete.isPresent()) {
-                Cliente clienteToUpdate = clienteRepository.findByRagSociale(commessaToDelete.get().getCliente().getRagSociale());
-
-                List<Commessa> commesseUpdated = clienteToUpdate.getCommesse().stream()
-                        .filter(x -> !(x.getCodiceCommessa().equals(commessaToDelete.get().getCodiceCommessa())))
-                        .collect(Collectors.toList());
-                clienteToUpdate.setCommesse(commesseUpdated);
-                clienteRepository.save(clienteToUpdate);
                 commessaRepository.delete(commessaToDelete.get());
             }
             else {

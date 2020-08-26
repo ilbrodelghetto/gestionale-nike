@@ -1,11 +1,9 @@
 package it.nike.gestnike.models.data_access;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,11 +16,17 @@ public class Dipendente {
 
     private String cf;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Contratto> contratto;
 
+    @ManyToOne(fetch = FetchType.EAGER)
     private Commessa commessa;
 
+    @OneToOne(cascade = CascadeType.ALL)
     private AnagraficaDipendente anagraficaDipendente;
 
+   // @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Azienda azienda;
+
 }

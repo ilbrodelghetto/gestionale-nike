@@ -2,10 +2,7 @@ package it.nike.gestnike.models.auth;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,6 +20,7 @@ public class AppUser {
 
 	private String password;
 
+	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Role> roles = new HashSet<>();
 
 

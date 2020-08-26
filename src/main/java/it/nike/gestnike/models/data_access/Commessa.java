@@ -1,7 +1,7 @@
 package it.nike.gestnike.models.data_access;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
 
 import javax.persistence.Entity;
@@ -24,7 +24,5 @@ public class Commessa {
     private Date data_inizio_commessa;
 
     private Date data_fine_commessa;
-
-    private Cliente cliente;
 
 }

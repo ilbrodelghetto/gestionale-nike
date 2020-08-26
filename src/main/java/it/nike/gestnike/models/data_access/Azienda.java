@@ -1,9 +1,6 @@
 package it.nike.gestnike.models.data_access;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 import lombok.Data;
 
@@ -29,7 +26,9 @@ public class Azienda {
 
 	private double markup;
 
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Cliente> clienti;
 
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Dipendente> dipendenti;
 }

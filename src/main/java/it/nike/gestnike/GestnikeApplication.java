@@ -36,21 +36,22 @@ public class GestnikeApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-//		Optional<Azienda> nike = aziendaRepository.findById("1");
-//		if(!nike.isPresent()) {
-//			Azienda azienda = new Azienda();
-//			azienda.setNomeAzienda("Nike");
-//			azienda.setId("1");
-//			aziendaRepository.save(azienda);
-//		}
-//
-//		Optional<Azienda> evolviti = aziendaRepository.findById("2");
-//		if(!evolviti.isPresent()) {
-//			Azienda azienda = new Azienda();
-//			azienda.setNomeAzienda("Evolviti");
-//			azienda.setId("2");
-//			aziendaRepository.save(azienda);
-//		}
+		Optional<Azienda> nike = aziendaRepository.findById(1L);
+		if(!nike.isPresent()) {
+			Azienda azienda = new Azienda();
+			azienda.setNomeAzienda("Nike");
+			azienda.setId(1L);
+			aziendaRepository.save(azienda);
+		}
+
+		Optional<Azienda> evolviti = aziendaRepository.findById(2l);
+		if(!evolviti.isPresent()) {
+			Azienda azienda = new Azienda();
+			azienda.setNomeAzienda("Evolviti");
+			azienda.setId(2l);
+			aziendaRepository.save(azienda);
+		}
+
 		Optional<AppUser> userOpt = userRepository.findByUsername("nike");
 		if(!userOpt.isPresent()) {
 			AppUser user = new AppUser();

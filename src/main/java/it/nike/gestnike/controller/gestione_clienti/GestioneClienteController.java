@@ -23,7 +23,12 @@ public class GestioneClienteController {
      */
     @PostMapping("/addCliente")
     public Cliente addCliente(@RequestBody Cliente cliente) throws Exception {
-        return anagraficaClienteService.addCliente(cliente);
+        try {
+            return anagraficaClienteService.addCliente(cliente);
+        }
+        catch (Exception e) {
+            throw e;
+        }
     }
 
     /**

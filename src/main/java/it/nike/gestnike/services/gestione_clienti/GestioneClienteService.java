@@ -56,20 +56,11 @@ public class GestioneClienteService {
 
         Cliente cliente = clienteRepository.findByRagSociale(cli.getRagSociale());
         if(cliente == null){
-            Azienda azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
-            if(azienda != null) {
-
                 cliente = clienteRepository.save(cli);
-                azienda.getClienti().add(cliente);
-                aziendaRepository.save(azienda);
             }
             else {
                 throw new Exception("azienda non trovata");
             }
-        }
-        else{
-            throw new Exception ("Cliente eistente");
-        }
         return null;
     }
 
@@ -83,30 +74,13 @@ public class GestioneClienteService {
 
         Cliente clienteOld = clienteRepository.findByRagSociale(ragSocialeDaAggiornare);
         if(clienteOld != null) {
-            if(!clienteOld.getAzienda().getNomeAzienda().equals(cliente.getAzienda().getNomeAzienda())) {
-                Azienda azienda = aziendaRepository.findByNomeAzienda(clienteOld.getAzienda().getNomeAzienda());
-                azienda.getClienti().remove(clienteOld);
-                aziendaRepository.save(azienda);
-                azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
-                cliente.setId(clienteOld.getId());
-                cliente = clienteRepository.save(cliente);
-                azienda.getClienti().add(cliente);
-                aziendaRepository.save(azienda);
-                return cliente;
-            }
+            cliente.setId(clienteOld.getId());
+            cliente = clienteRepository.save(cliente);
+            return cliente;
+        }
             else {
-                cliente.setId(clienteOld.getId());
-                cliente =  clienteRepository.save(cliente);
-                Azienda azienda = aziendaRepository.findByNomeAzienda(cliente.getAzienda().getNomeAzienda());
-                azienda.getClienti().remove(clienteOld);
-                azienda.getClienti().add(cliente);
-                aziendaRepository.save(azienda);
-                return cliente;
+                throw new Exception("cliente da aggiornare non trovato");
             }
-        }
-        else {
-            throw new Exception("qualcosa è andato storto");
-        }
     }
 
     /**
@@ -119,9 +93,6 @@ public class GestioneClienteService {
         try{
             Cliente clienteToDelete = clienteRepository.findByRagSociale(ragSociale);
             if(clienteToDelete != null){
-                Azienda azienda = aziendaRepository.findByNomeAzienda(clienteToDelete.getAzienda().getNomeAzienda());
-                azienda.getClienti().remove(clienteToDelete);
-                aziendaRepository.save(azienda);
                 clienteRepository.delete(clienteToDelete);
             }
         }

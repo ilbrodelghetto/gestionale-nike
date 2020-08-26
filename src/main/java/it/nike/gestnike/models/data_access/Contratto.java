@@ -1,7 +1,7 @@
 package it.nike.gestnike.models.data_access;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import javax.persistence.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +30,7 @@ public class Contratto {
 
     private String note;
 
-    private Azienda azienda;
-
+    @OneToOne
     private TipologiaContratto tipologiaContratto;
 
 }

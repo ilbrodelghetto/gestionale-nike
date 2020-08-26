@@ -2,11 +2,8 @@ package it.nike.gestnike.models.data_access;
 
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -29,8 +26,7 @@ public class Cliente {
 
     private String pec;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Commessa> commesse;
-
-    private Azienda azienda;
 
 }

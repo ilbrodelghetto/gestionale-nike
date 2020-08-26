@@ -64,17 +64,6 @@ public class GestioneDipendenteController {
 
     /**
      *
-     * @param dip
-     * @return
-     * @throws Exception
-     */
-    @GetMapping("/getDipendentiFiltered")
-    public List<Dipendente> getDipendentiFiltered(@RequestBody Dipendente dip) throws Exception {
-        return gestioneDipendenteService.getDipendentiFiltered(dip);
-    }
-
-    /**
-     *
      * @param cf
      * @throws Exception
      */
