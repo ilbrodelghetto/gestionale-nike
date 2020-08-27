@@ -3,11 +3,13 @@ package it.nike.gestnike.models.data_access;
 import javax.persistence.*;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.util.List;
 
 @Entity
 @Data
+@ToString(exclude = "dipendenti")
 public class Azienda {
 	
 	@Id
@@ -29,6 +31,6 @@ public class Azienda {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Cliente> clienti;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "azienda", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Dipendente> dipendenti;
 }

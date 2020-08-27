@@ -1,5 +1,6 @@
 package it.nike.gestnike.models.data_access;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -25,8 +26,8 @@ public class Dipendente {
     @OneToOne(cascade = CascadeType.ALL)
     private AnagraficaDipendente anagraficaDipendente;
 
-   // @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.EAGER)
     private Azienda azienda;
 
 }
