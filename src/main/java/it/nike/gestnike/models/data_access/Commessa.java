@@ -14,7 +14,6 @@ import java.util.Date;
 public class Commessa {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
     private Long codiceCommessa;
 
     private String descCommessa;
