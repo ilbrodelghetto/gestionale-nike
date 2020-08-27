@@ -34,5 +34,4 @@ public class AnagraficaDipendente {
 
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date dataNascita;
-
 }

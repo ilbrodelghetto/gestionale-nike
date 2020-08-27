@@ -1,7 +1,6 @@
 package it.nike.gestnike.models.data_access;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,14 +19,12 @@ public class Dipendente {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Contratto> contratto;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Commessa commessa;
 
     @OneToOne(cascade = CascadeType.ALL)
     private AnagraficaDipendente anagraficaDipendente;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.EAGER)
     private Azienda azienda;
-
 }

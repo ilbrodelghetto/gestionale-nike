@@ -2,6 +2,7 @@ package it.nike.gestnike.models.data_access;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import lombok.ToString;
 
@@ -31,6 +32,7 @@ public class Azienda {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Cliente> clienti;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "azienda", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Dipendente> dipendenti;
 }

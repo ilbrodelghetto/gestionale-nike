@@ -57,6 +57,7 @@ public class GestioneClienteService {
         Cliente cliente = clienteRepository.findByRagSociale(cli.getRagSociale());
         if(cliente == null){
                 cliente = clienteRepository.save(cli);
+                System.out.println("\n\n\nNUOVO CLIENTE DA AGGIUNGERE----------->" + cli + "\n\n\n\n\n");
             }
             else {
                 throw new Exception("azienda non trovata");

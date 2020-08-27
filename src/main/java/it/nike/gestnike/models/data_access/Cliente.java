@@ -18,7 +18,7 @@ public class Cliente {
 
     private String sedeLegale;
 
-    private String pIva;
+    private String piva;
 
     private String codiceFiscale;
 
