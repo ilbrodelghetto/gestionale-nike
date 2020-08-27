@@ -32,8 +32,10 @@ public class GestioneDipendenteService {
             Azienda azienda = aziendaRepository.findByNomeAzienda(dip.getAzienda().getNomeAzienda());
             System.out.println("azienda da aggiornare al dipendente--------->" + azienda);
             if(azienda != null) {
+
                 dip.setAzienda(azienda);
                 dip = dipendenteRepository.save(dip);
+                aziendaRepository.save(azienda);
                 return dip;
             }
         }
@@ -62,18 +64,34 @@ public class GestioneDipendenteService {
 
         /* Recuperiamo l'utente che deve essere aggiornato*/
         Dipendente dipendenteOld = dipendenteRepository.findByCf(cfDipDaAggiornare);
+        System.out.println("azienda da aggiornare al dipendente--------->" + dip);
 
         if(dipendenteOld != null) {
 
             /* settiamo l'anagrafica del dipendente aggiornato al dipende che deve essere aggiornato*/
             Azienda azienda = aziendaRepository.findByNomeAzienda(dip.getAzienda().getNomeAzienda());
-            System.out.println("azienda da aggiornare al dipendente--------->" + azienda);
+
             if(azienda != null) {
 
-                dipendenteOld.setAzienda(azienda);
-                dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
-                dip = dipendenteRepository.save(dipendenteOld);
-                return dip;
+//                if(!azienda.getNomeAzienda().equals(dipendenteOld.getAzienda().getNomeAzienda())) {
+//
+//                    Azienda aziendaOld = aziendaRepository.findByNomeAzienda(dipendenteOld.getAzienda().getNomeAzienda());
+//                    aziendaOld.getDipendenti().remove(dipendenteOld);
+//                    aziendaRepository.save(aziendaOld);
+//                    dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
+//                    azienda.getDipendenti().add(dipendenteOld);
+//                    aziendaRepository.save(azienda);
+//                }
+//                else {
+
+                    //azienda.getDipendenti().remove(dipendenteOld);
+                    dipendenteOld.setAzienda(azienda);
+                    dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
+                    dip = dipendenteRepository.save(dipendenteOld);
+                    //azienda.getDipendenti().add(dip);
+                    //aziendaRepository.save(azienda);
+                    return dip;
+  //              }
             }
         }
         else {
@@ -110,15 +128,17 @@ public class GestioneDipendenteService {
             Dipendente dipendeteToDelete = dipendenteRepository.findByCf(cfDipendente);
             System.out.println("DELETE DIPENDENTE------->" + dipendeteToDelete);
             if (dipendeteToDelete != null) {
-
-                    dipendenteRepository.delete(dipendeteToDelete);
-                }
-                else {
-                    throw new Exception("azienda non trovata");
-                }
+                Azienda azienda = aziendaRepository.findByNomeAzienda(dipendeteToDelete.getAzienda().getNomeAzienda());
+                azienda.getDipendenti().remove(dipendeteToDelete);
+                aziendaRepository.save(dipendeteToDelete.getAzienda());
+                dipendenteRepository.delete(dipendeteToDelete);
             }
+            else {
+                throw new Exception("La cancellazione non è andata a buon fine");
+            }
+        }
         catch (Exception e) {
-            throw new Exception("azienda non trovata");
+            throw e;
         }
     }
 
