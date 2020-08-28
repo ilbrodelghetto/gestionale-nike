@@ -1,5 +1,6 @@
 package it.nike.gestnike.models.data_access;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import javax.persistence.*;
 
@@ -20,8 +21,10 @@ public class Contratto {
 
     private String livelloContratto;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date inizioContratto;
 
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date fineContratto;
 
     private double retribuzioneMensileLorda;

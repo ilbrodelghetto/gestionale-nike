@@ -25,6 +25,6 @@ public class Dipendente {
     @OneToOne(cascade = CascadeType.ALL)
     private AnagraficaDipendente anagraficaDipendente;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Azienda azienda;
 }

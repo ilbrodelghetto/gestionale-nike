@@ -28,21 +28,29 @@ public class GestioneDipendenteService {
     public Dipendente addDipendente(Dipendente dip) throws Exception {
 
         Dipendente dipendente = dipendenteRepository.findByCf(dip.getCf());
+        System.out.println("INSERIMENTO DIPENDENTE--------------___> " + dip);
+
         if(dipendente == null) {
             Azienda azienda = aziendaRepository.findByNomeAzienda(dip.getAzienda().getNomeAzienda());
             System.out.println("azienda da aggiornare al dipendente--------->" + azienda);
             if(azienda != null) {
 
                 dip.setAzienda(azienda);
+                dip.setCommessa(null);
                 dip = dipendenteRepository.save(dip);
                 aziendaRepository.save(azienda);
+                return dip;
+            }
+            else {
+                dip.setAzienda(null);
+                dip.setCommessa(null);
+                dip = dipendenteRepository.save(dip);
                 return dip;
             }
         }
         else {
             throw  new Exception("Dipendente gia esistente");
         }
-        return null;
     }
 
     /**
