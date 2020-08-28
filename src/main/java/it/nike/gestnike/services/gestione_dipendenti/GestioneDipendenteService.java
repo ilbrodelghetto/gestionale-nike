@@ -75,37 +75,21 @@ public class GestioneDipendenteService {
         System.out.println("azienda da aggiornare al dipendente--------->" + dip);
 
         if(dipendenteOld != null) {
-
             /* settiamo l'anagrafica del dipendente aggiornato al dipende che deve essere aggiornato*/
             Azienda azienda = aziendaRepository.findByNomeAzienda(dip.getAzienda().getNomeAzienda());
-
             if(azienda != null) {
-
-//                if(!azienda.getNomeAzienda().equals(dipendenteOld.getAzienda().getNomeAzienda())) {
-//
-//                    Azienda aziendaOld = aziendaRepository.findByNomeAzienda(dipendenteOld.getAzienda().getNomeAzienda());
-//                    aziendaOld.getDipendenti().remove(dipendenteOld);
-//                    aziendaRepository.save(aziendaOld);
-//                    dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
-//                    azienda.getDipendenti().add(dipendenteOld);
-//                    aziendaRepository.save(azienda);
-//                }
-//                else {
-
-                    //azienda.getDipendenti().remove(dipendenteOld);
-                    dipendenteOld.setAzienda(azienda);
-                    dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
-                    dip = dipendenteRepository.save(dipendenteOld);
-                    //azienda.getDipendenti().add(dip);
-                    //aziendaRepository.save(azienda);
-                    return dip;
-  //              }
+                dipendenteOld.setAzienda(azienda);
             }
+            if(dip.getContratto()!= null) {
+                dipendenteOld.setContratto(dip.getContratto());
+            }
+            dipendenteOld.setAnagraficaDipendente(dip.getAnagraficaDipendente());
+            dip = dipendenteRepository.save(dipendenteOld);
+            return dip;
         }
         else {
             throw new Exception("dipendente da aggiornare non trovato");
         }
-        return null;
     }
 
     /**
@@ -136,9 +120,11 @@ public class GestioneDipendenteService {
             Dipendente dipendeteToDelete = dipendenteRepository.findByCf(cfDipendente);
             System.out.println("DELETE DIPENDENTE------->" + dipendeteToDelete);
             if (dipendeteToDelete != null) {
-                Azienda azienda = aziendaRepository.findByNomeAzienda(dipendeteToDelete.getAzienda().getNomeAzienda());
-                azienda.getDipendenti().remove(dipendeteToDelete);
-                aziendaRepository.save(dipendeteToDelete.getAzienda());
+                if(dipendeteToDelete.getAzienda() != null) {
+                    Azienda azienda = aziendaRepository.findByNomeAzienda(dipendeteToDelete.getAzienda().getNomeAzienda());
+                    azienda.getDipendenti().remove(dipendeteToDelete);
+                    aziendaRepository.save(dipendeteToDelete.getAzienda());
+                }
                 dipendenteRepository.delete(dipendeteToDelete);
             }
             else {

@@ -29,7 +29,7 @@ public class Contratto {
 
     private double retribuzioneMensileLorda;
 
-    private double rS_bP;
+    private double rs_bp;
 
     private String note;
 
